@@ -37,9 +37,9 @@ machines = {"debian": "apt", "ubuntu": "apt",
             "centOS": "yum", "fedora": "yum"}
 installer = None
 while installer == None:
-    print("Linux_Machines")
+    print("Linux_Machines:")
     for i in machines:
-        print("     " + i)
+        print("     -" + i)
     machine = input("What Machine Are You Using? ")
     for i in machines :
         if i == machine:
@@ -50,12 +50,12 @@ while installer == None:
     #Declare Server
 servers = {"ftp": ["vsftpd"], "tftp" : ["tftpd-hpa"], 
            "sftp": ["sshd"], "telnet": ["telnetd", "inetutils-telnetd"],
-            "dns (Secondary)": ["bind9", "bind9-utils"], "ntp": ["chronyd"]}
+            "dns": ["bind9", "bind9-utils", "bind9-doc"], "ntp": ["chronyd"]}
 server_type = None
 while server_type == None:
-    print("Servers")
+    print("Servers:")
     for i in servers:
-        print("     " + i)
+        print("     -" + i)
     server = input("What Server Are You Using? ")
     for i in servers:
         if i == server:
@@ -64,7 +64,7 @@ while server_type == None:
         print("Must Be A Valid Server Name")
 for i in server_type:
         print("Installing " + i)
-        #install_package(i, installer)
+        install_package(i, installer)
 
 #Configure Package
 #Start/Enable Services
