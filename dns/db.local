@@ -1,0 +1,10 @@
+$TTL	86400
+@	IN	SOA	ns1.secondary_dns.local. admin.secondary_dns.local. (
+			2023032101
+			3600
+			1800
+			1209600
+			86400 )
+	IN	NS	ns1.secondary_dns.local.
+10	IN	PTR	ns1.secondary_dns.local.
+
