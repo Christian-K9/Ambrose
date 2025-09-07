@@ -34,3 +34,5 @@ END_SCRIPT
 else
 	echo "Enter Valid Input"
 fi
+sudo systemctl status vsftp >> filename.txt
+head -n 10 filename.txt
