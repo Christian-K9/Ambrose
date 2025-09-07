@@ -42,7 +42,7 @@ while installer == None:
         print("Must Be A Valid Machine Name")
 
     #Declare Server
-servers = {"ftp": ["vsftpd"], "tftp" : ["tftpd-server syslinux xinetd"], 
+servers = {"ftp": ["vsftpd"], "tftp" : ["tftpd-server"], 
            "sftp": ["openssh-server"], "telnet": ["telnetd", "inetutils-telnetd"],
             "dns": ["bind9", "bind9-utils", "bind9-doc"], "ntp": ["chronyd"]}
 server_type = None
