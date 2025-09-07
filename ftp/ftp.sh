@@ -16,6 +16,7 @@ if [ "$machine_type" = "s" ]; then
 	sudo firewall-cmd --add-port=30000-31000/tcp
 	sudo firewall-cmd --reload
 
+ 	echo "Create password for ftpuser"
 	sudo adduser ftpuser
 	mkdir -p /home/ftpuser/ftp
 	chmod 750 /home/ftpuser/ftp
@@ -34,5 +35,5 @@ END_SCRIPT
 else
 	echo "Enter Valid Input"
 fi
-sudo systemctl status vsftp >> filename.txt
+sudo systemctl status vsftpd >> filename.txt
 head -n 10 filename.txt
