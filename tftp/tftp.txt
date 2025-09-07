@@ -1,0 +1,31 @@
+tftp
+
+sudo ip route add default via 192.168.2.1 dev eno16777984
+
+From Server:
+	sudo yum install tftp-server
+	sudo nano /etc/xinetd.d/tftp
+
+	configurations:
+		service tftp
+		{
+			socket_type	= dgram
+			protocol	= udp
+			wait	= yes
+			user	= root
+			server	= /usr/sbin/in.tftpd
+			server_args = -s /var/lib/tftpboot
+			disable	= no
+		}
+
+
+	sudo mkdir -p /var/lib/tftpboot
+	sudo chmod -R 777 /var/lib/tftpboot
+	sudo systemctl start xinetd
+	sudo systemctl enable xinetd
+
+
+From Client:
+	sudo apt update && install tftpd-hpa
+	tftpd 192.168.2.10
+	put client.txt
