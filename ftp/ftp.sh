@@ -17,7 +17,6 @@ if [ "$machine_type" = "s" ]; then
 	sudo firewall-cmd --reload
 
 	sudo adduser ftpuser
-	echo "ftpuser:passwprd" | sudo chpasswd
 	mkdir -p /home/ftpuser/ftp
 	chmod 750 /home/ftpuser/ftp
 	chown ftpuser:ftpuser /home/ftpuser/ftp
