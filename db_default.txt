@@ -1,0 +1,13 @@
+
+$TTL 86400
+@       IN      SOA ns1.ccdc.local. root.ccdc.local.
+                2025090601 ; Serial
+                3600
+                1800
+                1209600
+                86400 )
+
+@       IN      NS ns1.ccdc.local.
+10      IN      PTR ns1.ccdc.local.
+20      IN      PTR srv.ccdc.local.
+
