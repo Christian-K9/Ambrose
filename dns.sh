@@ -6,7 +6,7 @@ if [ "$machine_type" = "s" ]; then
         read -p "Enter Network ID: " network_id
         read -p "Enter Host Identifier: " machine_ip
         fq_ip="${network_id}.${machine_ip}"
-        server=$((num + 10)
+        server=$((num + 10))
         full_rev_zone="$(echo "$network_id" | awk -F. '{print $3"."$2"."$1}').in-addr.arpa"
         #named.conf.local file
         sudo tee -a named.conf.local >/dev/null <<ENDZONE
@@ -15,7 +15,7 @@ if [ "$machine_type" = "s" ]; then
                 file "/etc/bind/db.$network_id";
         };
 ENDZONE
-
+        cp /etc/bind/named.conf original_named.conf
         cp named.conf /etc/bind/named.conf
         #db.ccdc.local file
         sudo tee -a db.ccdc.local >/dev/null <<ENDZ
@@ -30,3 +30,4 @@ EOF
 fi
 ~
 (END)
+
