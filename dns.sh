@@ -37,7 +37,10 @@ ENDZ
         sudo touch db.$network_id
         sudo cp db_default db.$network_id
         cp db.$network_id /etc/bind/db.$network_id
+        sudo systemctl restart named
 fi
+
+
 
 
 
