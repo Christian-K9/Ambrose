@@ -12,7 +12,7 @@ if [ "$machine_type" = "s" ]; then
         sudo cp /etc/bind/named.conf original_named.conf
         sudo cp named.conf /etc/bind/named.conf
         #named.conf.options file
-        sudo cp /etc/bind/namd.conf.options original_named.conf.options
+        sudo cp /etc/bind/named.conf.options original_named.conf.options
         sudo cp named.conf.options /etc/bind/named.conf.options
         #named.conf.local file
         sudo tee -a named.conf.local >/dev/null <<ENDZONE
@@ -34,9 +34,11 @@ srv     IN      A       $network_id.server
 ENDZ
         cp db.ccdc.local /etc/bind/db.ccdc.local
         #db.network_id
-        sudo cp db.default db.$network_id
+        sudo touch db.$network_id
+        sudo cp db_default db.$network_id
         cp db.$network_id /etc/bind/$network_id
 fi
+
 
 
 
