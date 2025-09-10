@@ -8,26 +8,35 @@ if [ "$machine_type" = "s" ]; then
         fq_ip="${network_id}.${machine_ip}"
         server=$((num + 10))
         full_rev_zone="$(echo "$network_id" | awk -F. '{print $3"."$2"."$1}').in-addr.arpa"
+        #named.conf file
+        sudo cp /etc/bind/named.conf original_named.conf
+        sudo cp named.conf /etc/bind/named.conf
+        #named.conf.options file
+        sudo cp /etc/bind/namd.conf.options original_named.conf.options
+        sudo cp named.conf.options /etc/bind/named.conf.options
         #named.conf.local file
         sudo tee -a named.conf.local >/dev/null <<ENDZONE
-        zone "$full_rev_zone" {
-                type master;
-                file "/etc/bind/db.$network_id";
-        };
+zone "$full_rev_zone" {
+        type master;
+        file "/etc/bind/db.$full_rev_zone";
+};
 ENDZONE
-        cp /etc/bind/named.conf original_named.conf
-        cp named.conf /etc/bind/named.conf
+        sudo cp /etc/bind/named.conf.local original_named.conf.local
+        sudo cp named.conf.local /etc/bind/named.conf.local
+        #named.conf.default-zones file
+        sudo cp /etc/bind/named.conf.default-zones original_named.conf.default-zones
+        sudo cp named.conf.default-zones /etc/bind/named.conf.default-zones
         #db.ccdc.local file
         sudo tee -a db.ccdc.local >/dev/null <<ENDZ
-        ns1     IN      A       $fq_ip
-        srv     IN      A       $network_id.server
+@       IN      NS      ns1.ccdc.local.
+ns1     IN      A       $fq_ip
+srv     IN      A       $network_id.server
 ENDZ
         cp db.ccdc.local /etc/bind/db.ccdc.local
-        sudo tee -a /db.$network_id >/dev/null <<EOF
-        $machine_ip     IN      PTR     ns1.ccdc.local.
-        $machine_ip     IN      PTR     srv.ccdc.local.
-EOF
+        #db.network_id
+        sudo cp db.default db.$network_id
+        cp db.$network_id /etc/bind/$network_id
 fi
-~
-(END)
+
+
 
