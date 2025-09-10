@@ -1,0 +1,7 @@
+$TTL 86400
+@   IN  SOA ns1.ccdc.local. root.ccdc.local. (
+        2025090701 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        1209600    ; Expire
+        86400 )    ; Minimum
