@@ -18,7 +18,7 @@ if [ "$machine_type" = "s" ]; then
         sudo tee -a named.conf.local >/dev/null <<ENDZONE
 zone "$full_rev_zone" {
         type master;
-        file "/etc/bind/db.$full_rev_zone";
+        file "/etc/bind/db.$network_id";
 };
 ENDZONE
         sudo cp /etc/bind/named.conf.local original_named.conf.local
@@ -39,6 +39,7 @@ ENDZ
         cp db.$network_id /etc/bind/db.$network_id
         sudo systemctl restart named
 fi
+
 
 
 
