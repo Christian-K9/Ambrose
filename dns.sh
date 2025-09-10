@@ -30,7 +30,7 @@ ENDZONE
         sudo tee -a db.ccdc.local >/dev/null <<ENDZ
 @       IN      NS      ns1.ccdc.local.
 ns1     IN      A       $fq_ip
-srv     IN      A       $network_id.server
+srv     IN      A       $network_id.$server
 ENDZ
         cp db.ccdc.local /etc/bind/db.ccdc.local
         #db.network_id
@@ -39,6 +39,7 @@ ENDZ
         cp db.$network_id /etc/bind/db.$network_id
         sudo systemctl restart named
 fi
+
 
 
 
