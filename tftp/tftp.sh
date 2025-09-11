@@ -15,3 +15,4 @@ elif [ "$machine_type" = "c" ]; then
     put tftp_file.txt
 else
     echo "Enter A Valid Input"
+fi
