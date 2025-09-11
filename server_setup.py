@@ -27,7 +27,7 @@ def check_service_status(service_name):
         print(service_name + " Could Not Be Installed ")
 
     #Declare Machine
-machines = {"debian": "apt", "ubuntu": "apt",
+machines = {"debian": "apt-get", "ubuntu": "apt-get",
             "centOS": "yum", "fedora": "yum"}
 installer = None
 while installer == None:
@@ -60,6 +60,10 @@ for i in server_type:
         print("Installing " + i)
         install_package(i, installer)
         check_service_status(i)
+try:
+    subprocess.run(["sudo", "systemctl", "unattended-upgrades"], check=True)
+except subprocess.CalledProcessError:
+    print("Failed to stop unattended-upgrades")
 
 #Configure Package
 
