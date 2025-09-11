@@ -65,6 +65,8 @@ try:
 except subprocess.CalledProcessError:
     print("Failed to stop unattended-upgrades")
 
+subprocess.run(["bash", "format.sh"])
+
 #Configure Package
 
 #Start/Enable Services
