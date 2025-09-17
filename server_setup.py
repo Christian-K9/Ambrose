@@ -43,7 +43,7 @@ while installer == None:
 
     #Declare Server
 servers = {"ftp": ["vsftpd"], "tftp" : ["tftpd-server", "tftpd-hpa"], 
-           "sftp": ["openssh-server"], "telnet": ["telnet-server xinetd"],
+           "sftp": ["openssh-server"], "telnet": ["telnetd"],
             "dns": ["bind9", "bind9-utils", "bind9-dnsutils"], "ntp": ["chronyd"]}
 server_type = None
 while server_type == None:
